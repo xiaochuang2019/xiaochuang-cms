@@ -2,6 +2,8 @@ package com.xiaochuang.cms.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.xiaochuang.cms.domain.Article;
 import com.xiaochuang.cms.domain.ArticleWithBLOBs;
 
@@ -21,4 +23,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
 	List<Article> selects(Article article);
+
+	void updateHits(@Param("id")Integer id);
 }

@@ -14,16 +14,17 @@
 <script type="text/javascript" src="/resource/js/turnpage.js"></script>
 </head>
 <script type="text/javascript">
-$(function() {
-	$("#status").val(${article.status});
-})
+	$(function() {
+	$("#status").val('${article.status}');
+	})
 	function goPage(page) {
 	var url = "/article/articles?page=" + page + "&title="
-			+ $("[name='title']").val()
+			+ $("[name='title']").val()+"&status="+$("#status").val();
 	$("#center").load(url);
 	}
 	function query() {
-		$("#center").load("article/articles?title="+$("#title").val()+"&status="+$("#status").val());
+		var url="/article/articles?title="+$("#title").val()+"&status="+$("#status").val();
+		$("#center").load(url);
 	}
 	function update(id,hot,flag) {
 		$.post(

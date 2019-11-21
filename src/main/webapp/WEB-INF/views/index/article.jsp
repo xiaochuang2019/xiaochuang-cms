@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="container" style="text-align: center;">
 	<dl>
 		<dt>
 			<h2>${article.title }</h2>
@@ -21,11 +21,12 @@
 
 		<hr>
 		<dd>
-			<fmt:formatDate value="${article.updated }"
-				pattern="yyyy-MM-dd HH:mm:ss" />
+			作者:${article.user.username}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布日期:<fmt:formatDate value="${article.updated }"
+				pattern="yyyy-MM-dd HH:mm:ss" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览量:${article.hits}
 		</dd>
 		<dd>${article.content }</dd>
 
 	</dl>
+</div>
 </body>	
 </html>

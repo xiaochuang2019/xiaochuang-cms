@@ -7,12 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>cms系统</title>
-<link rel="stylesheet" type="text/css" href="/resource/css/cms.css" />
-<link href="/resource/css/bootstrap.min.css" type="text/css"
-	rel="stylesheet">
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 </head>
+<style type="text/css">
+.ex {
+	white-space: nowrap; /*不换行的*/
+	overflow: hidden; /*超出范围隐藏*/
+	text-overflow: ellipsis; /*超出用省略号 */
+}
+</style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/top.jsp"></jsp:include>
 	<div class="container">
@@ -82,14 +84,17 @@
 						<hr>
 						<c:forEach items="${info.list}" var="c">
 							<hr>
+							<br>
 							<div class="media">
 								<div class="media-body">
 									<h5 class="mt-0 mb-1">
+									<br>
 										<a href="/index/article?id=${c.id }" target="_blank">${c.title }</a>
 									</h5>
-									<p>${c.user.username}</p>
+									作者:${c.user.username}&nbsp;&nbsp;
+									发布日期:
 									<fmt:formatDate value="${c.updated }"
-										pattern="yyyy-MM-dd HH:mm:ss" />
+										pattern="yyyy-MM-dd HH:mm:ss" />&nbsp;&nbsp;浏览量:${c.hits}
 								</div>
 								<img src="/resource/pic/${c.picture}" class="ml-3"
 									style="height: 101px; width: 156px" alt="...">
@@ -110,27 +115,27 @@
 							</c:forEach>
 					</ul>
 					<div>
-							<hr>
-							<c:forEach items="${info.list}" var="h">
-								<div class="media">
-									<img src="/resource/pic/${h.picture}" class="mr-3" alt="..."
-										style="height: 101px; width: 156px">
-									<div class="media-body">
-										<h3>
-											<strong><a href="/index/article?id=${h.id }"
-												target="_blank">${h.title }</a></strong>
-										</h3>
-										<p style="margin-top: 10px">
-											${h.user.username}
-											<fmt:formatDate value="${h.updated }"
-												pattern="yyyy-MM-dd HH:mm:ss" />
-										</p>
-									</div>
+						<hr>
+						<c:forEach items="${info.list}" var="h">
+							<div class="media">
+								<img src="/resource/pic/${h.picture}" class="mr-3" alt="..."
+									style="height: 101px; width: 156px">
+								<div class="media-body">
+									<h3>
+										<strong><a href="/index/article?id=${h.id }"
+											target="_blank">${h.title }</a></strong>
+									</h3>
+									<p style="margin-top: 10px">
+										作者:${h.user.username}&nbsp;&nbsp;
+										发布日期:<fmt:formatDate value="${h.updated }"
+											pattern="yyyy-MM-dd HH:mm:ss" />&nbsp;&nbsp;浏览量:${h.hits}
+									</p>
 								</div>
-								<hr>
-							</c:forEach>
+							</div>
+							<hr>
+						</c:forEach>
 
-						</div>
+					</div>
 				</c:if>
 				<jsp:include page="/WEB-INF/views/common/pages.jsp"></jsp:include>
 			</div>
@@ -141,20 +146,38 @@
 					<div class="card-header">最新文章</div>
 					<div class="card-body">
 						<c:forEach items="${lastInfo.list}" var="a">
-							<p>
-								<a href="/index/article?id=${a.id }" target="_blank">${a.title }</a>
+							<p class="ex">
+								<a href="/index/article?id=${a.id }" target="_blank"
+									title="${a.title }">${a.title }</a>
 
 							</p>
 						</c:forEach>
 					</div>
 				</div>
+				<!-- 24小时热文 -->
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">24小时热文</div>
+					<div class="card-body"></div>
 				</div>
+
+				<!-- 图片集 -->
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">图片集</div>
+					<div class="card-body"></div>
+				</div>
+				<!-- 友情链接 -->
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">友情链接</div>
+					<div class="card-body"></div>
+				</div>
+			</div>
+			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 		</div>
-		
+
 		<script type="text/javascript">
 		//分页
 		function goPage(page) {
-			var url = "/index?page=" + page
+			var url = "/index?page=" + page+"&channelId="+'${article.channelId}'+"&categoryId="+'${article.categoryId}'
 			location = url;
 		}
 	</script>

@@ -19,6 +19,7 @@
     
 <script charset="utf-8" src="/resource/kindeditor/lang/zh-CN.js"></script>
 <script src="/resource/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/resource/js/jquery.validate.js"></script>
 
 <script>
 	KindEditor.ready(function(K) {
@@ -79,12 +80,71 @@
 		</div>
 
 		<div class="form-group">
-			<button type="button" class="btn btn-success" onclick="publish()">发布文章</button>
-			<button type="reset" class="btn btn-warning">重置</button>
+			<button type="submit" class="btn btn-success">发布文章</button>
+			<button type="button" class="btn btn-warning" onclick="reset1()">重置</button>
 
 		</div>
 	</form>
 	<script type="text/javascript">
+		
+	//解决reset不能触发change的问题
+	function reset1() {
+		$("#form1")[0].reset();
+		$("#channel").trigger("change");
+	}
+	
+	$(function() {
+		$("#form1").validate({
+			rules : {
+				title : {
+					required : true,
+				},
+				channelId : {
+					min : 1,
+				},
+				categoryId : {
+					min : 1
+				}
+			},
+			messages : {
+				title : {
+					required : "标题必须录入",
+				},
+				channelId : {
+					min : "栏目必须选择",
+				},
+				categoryId : {
+					min : "分类必须选择"
+				}
+			},
+			submitHandler : function() {
+				//获取formDAta对象
+				var formData = new FormData($("#form1")[0]);
+				//单独封装富文本编辑中内容(html格式的)
+				formData.set("content", editor1.html());
+				$.ajax({
+					type : "post",
+					url : "/my/publish",
+					data : formData,
+					// 告诉jQuery不要去处理发送的数据
+					processData : false,
+					// 告诉jQuery不要去设置Content-Type请求头
+					contentType : false,
+					success : function(flag) {
+						if (flag) {
+							alert("发布成功");
+							location.href = "/my"
+						} else {
+							alert("发布失败,可能登录过期")
+						}
+					}
+				})
+			}
+		})
+	})
+/* 	
+	
+	
 		function publish() {
 			var formData=new FormData($("#form1")[0]);
 			formData.set("content",editor1.html());
@@ -105,7 +165,7 @@
 					}
 				}
 			})
-		}
+		} */
 		//栏目.分类的下拉框的赋值
 		$(function() {
 			//先查询出所有栏目

@@ -75,8 +75,13 @@ public class MyController {
 			article.setPicture(lastpath);
 
 		}
+		HttpSession session = request.getSession(false);
+		if (session!=null) {
+			User user = (User) session.getAttribute("user");
+			Integer id = user.getId();
+			article.setUserId(id);
+		}
 		article.setStatus(0);//待审核
-		article.setUserId(160);//暂时写死...
 		article.setHits(0);
 		article.setHot(0);
 		article.setDeleted(0);
@@ -92,7 +97,6 @@ public class MyController {
 		if (session!=null) {
 			User user = (User) session.getAttribute("user");
 			Integer id = user.getId();
-			System.out.println(id);
 			article.setUserId(id);
 		}
 		PageInfo<Article> articles =	articleService.articles(article,page,pageSize);

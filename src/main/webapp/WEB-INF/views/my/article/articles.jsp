@@ -55,6 +55,7 @@
 				<th>所属栏目</th>
 				<th>所属分类</th>
 				<th>更新时间</th>
+				<th>文章状态</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -64,14 +65,15 @@
 				<td>${a.title }</td>
 				<td>${a.user.username}</td>
 				<td><c:if test="${a.hot==1}">
-						<button type="button" class="btn btn-danger">否</button>
+						热门
 					</c:if> <c:if test="${a.hot==0}">
-						<button type="button" class="btn btn-success">是</button>
+						冷门
 					</c:if></td>
 				<td>${a.category.name}</td>
 				<td>${a.channel.name}</td>
 				<td><fmt:formatDate value="${a.updated }"
 						pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				<td>${a.status==0?'待审':a.status==1?'已审':'驳回'}</td>	
 				<td><button type="button" class="btn btn-warning"
 						onclick="detail(${a.id})">详情</button></td>
 			</tr>

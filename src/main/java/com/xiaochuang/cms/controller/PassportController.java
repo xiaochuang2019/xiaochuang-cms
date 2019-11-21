@@ -31,10 +31,15 @@ public class PassportController {
 	public String login(User user, Model model, HttpSession session) {
 		try {
 			User u = userService.login(user);
+			if(u.getLocked()==0) {
+				model.addAttribute("message", "该用户已被禁用,有问题请联系管理员");
+				return "passport/login";
+			}
 			if (u.getRole().equals("1")) {
 				session.setAttribute("admin", u);
 				return "/admin/index";
-			}else {
+			}
+			else {
 				session.setAttribute("user", u);
 				return "/my/index";
 			}

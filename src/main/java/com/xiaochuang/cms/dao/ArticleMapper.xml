@@ -283,4 +283,7 @@
       original = #{original,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateHits" parameterType="java.lang.Integer">
+  	update cms_article set hits=hits+1 where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

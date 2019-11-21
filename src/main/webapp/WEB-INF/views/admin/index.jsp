@@ -25,7 +25,7 @@
 	<div class="container-fluid">
 		<div class="row" style="margin-top: 2px; min-height: 50px">
 			<div class="col-md-12" style="background-color: #000">
-				<img alt="" src="/camera/logo.jpg" class="rounded-circle">
+				<img alt="" src="/camera/1.jpg" style="float:left;height: 100px;width: 180px;" class="rounded-circle">
 					<a class="navbar-brand mr-1" href="index.html">CMS系统后台</a>
 
 				<ul>
@@ -33,19 +33,20 @@
 					<c:choose>
 						<%-- 登录显示用户菜单 --%>
 						<c:when test="${sessionScope.admin != null}">
-							<li class="nav-item">
+							<div class="btn-group dropleft"
+							style="float: right; margin-bottom: 10px">
+							<button type="button" class="btn btn-secondary dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">${sessionScope.admin.username}</button>
+							<div class="dropdown-menu">
+								<ul class="nav" style="left: -88px">
 
-								<div class="dropdown" style="padding-top: 0.1rem;">
-									<a href="#" class="nav-link dropdown-toggle" role="button"
-										id="dropdownMenuButton" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false"> <c:out
-											value="${admin.username}" default="cms-User" />
-									</a>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="/passport/logout">退出</a>
-									</div>
-								</div>
-							</li>
+									<li class="nav-item"><a class="nav-link"
+										href="/passport/login">注销</a></li>
+
+								</ul>
+							</div>
+						</div>
 						</c:when>
 						<c:otherwise>
 							<%-- 未登录显示登录注册链接 --%>

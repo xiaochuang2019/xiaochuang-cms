@@ -32,6 +32,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public ArticleWithBLOBs article(Article article) {
+		articleMapper.updateHits(article.getId());
 		return articleMapper.selectByPrimaryKey(article.getId());
 	}
 

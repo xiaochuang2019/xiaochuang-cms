@@ -10,14 +10,15 @@
 
 <link rel="stylesheet" type="text/css"
 	href="/resource/css/cms.css?v=1.1" />
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="/resource/css/jquery/screen.css" />
 
-	
+
 <div class="container-fulid">
 	<nav class="navbar navbar-light bg-light">
 		<a class="navbar-brand" href="/" title="cms"><img alt="cms"
-			src="/camera/logo.jpg"  class="rounded-circle"></a>
+			src="/camera/1.jpg" style="height: 100px; width: 180px;"
+			class="rounded-circle"></a>
 
 		<!-- 搜索框：在专业高级二学完ElasticSearch后实现 -->
 		<form class="form-inline">
@@ -37,7 +38,7 @@
 				<%-- 登录显示用户菜单 --%>
 				<c:when test="${sessionScope.user != null}">
 					<li class="nav-item"><a class="nav-link" href="/my/home">
-							<img alt="" src="/resource/images/default_avatar.png"
+							<img alt="..." src="/camera/t018d8cf3f0392a041d.jpg"
 							style="max-height: 2.5rem" class="rounded img-fluid">
 					</a></li>
 					<li class="nav-item">
@@ -47,13 +48,13 @@
 								aria-haspopup="true" aria-expanded="false"> <c:out
 									value="${user.username}" default="cms-User" />
 							</a>
-							<div class="dropdown-menu dropdown-menu-left"
-								aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="/my/index">个人主页</a> <a
-									class="dropdown-item" href="#">个人设置</a> <a
-									class="dropdown-item" href="#">我的文章</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="/passport/logout">退出</a>
+							<div class="dropdown-menu" style="left: -88px">
+								<ul class="nav" style="margin-right: 50px">
+									<li class="nav-item"><a class="nav-link" href="/index/index">主页</a></li>
+									<li class="nav-item"><a class="nav-link" href="/my/index">个人中心</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="/passport/logout">注销</a></li>
+								</ul>
 							</div>
 						</div>
 					</li>
@@ -61,7 +62,8 @@
 				<c:otherwise>
 					<%-- 未登录显示登录注册链接 --%>
 					<li class="nav-item"><a class="nav-link" href="/passport/reg">注册</a></li>
-					<li class="nav-item"><a class="nav-link" href="/passport/login">登录</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/passport/login">登录</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
