@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaochuang.cms.dao.CommentMapper">
+
+  <resultMap id="BaseResultMap" type="com.xiaochuang.cms.domain.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content" property="content" jdbcType="CLOB" typeHandler="org.apache.ibatis.type.ClobTypeHandler"/>
+    <result column="created" property="created" jdbcType="TIMESTAMP"/>
+    <result column="user_id" property="author.id" jdbcType="INTEGER"/>
+    <result column="article_id" property="article.id" jdbcType="INTEGER"/>
+    <result column="username" property="author.username" jdbcType="VARCHAR"/>
+    <result column="nickname" property="author.nickname" jdbcType="VARCHAR"/>
+    <!-- 多对一查询自动映射实体 
+    <association property="channel">
+    	<id column="channel_id" property="id" jdbcType="INTEGER"/>
+    	<result column="name" property="name" jdbcType="VARCHAR" />
+    </association>
+    <association property="category">
+    	<id column="category_id" property="id" jdbcType="INTEGER"/>
+    	<result column="name" property="name" jdbcType="VARCHAR" />
+    </association>
+    <association property="author">
+    	<id column="user_id" property="id" jdbcType="INTEGER"/>
+    	<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    </association>-->
+  </resultMap>
+  
+  
+  <insert id="save" parameterType="com.xiaochuang.cms.domain.Comment">
+    insert into cms_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="article != null">
+       article_id,
+      </if>
+      <if test="author != null">
+        user_id,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="article != null">
+        #{article.id,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author.id,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selects" parameterType="com.xiaochuang.cms.domain.Comment" resultMap="BaseResultMap">
+	select * from cms_comment c ,cms_user u where c.user_id = u.id 
+    <if test="comment.article != null">
+    	AND c.article_id = #{comment.article.id,jdbcType=INTEGER}
+    </if>
+    <if test="comment.author != null">
+    	AND c.user_id = #{comment.author.id,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <!-- 
+  
+  <select id="selectByAuthor" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select b.id, b.title, b.cover, b.summary, b.category, b.author, b.author, b.hits, b.comments, b.created, b.updated, c.name as category_name 
+    from cms_article as b, blog_category as c 
+    where b.category=c.id AND b.author = #{author,jdbcType=INTEGER}
+    order by b.created desc
+  </select>
+  
+  <select id="selectByCategory" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_article
+    where category = #{category,jdbcType=INTEGER}
+    order by created desc, comments desc
+  </select>
+  
+  <select id="selectByLast" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select b.id, b.title, b.cover, b.summary, b.category, b.author, b.author, b.hits, b.comments, b.created, b.updated, u.nickname as author_nickname,c.name as category_name 
+    from cms_article as b, blog_user as u, blog_category as c 
+    where b.author=u.id and b.category=c.id
+    order by b.created desc
+    limit 10
+  </select>
+  
+  <select id="selectByHit" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select b.id, b.title, b.cover, b.summary, b.category, b.author, b.author, b.hits, b.comments, b.created, b.updated, u.nickname as author_nickname,c.name as category_name 
+    from cms_article as b, blog_user as u, blog_category as c 
+    where b.author=u.id and b.category=c.id
+    order by b.comments desc
+    limit 10
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cms_article where id = #{id,jdbcType=INTEGER}
+  </delete>
+ 
+  
+  
+   <update id="updateByKey" parameterType="org.howsun.blog.domain.User">
+    update cms_article
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+      	content = #{content,jdbcType=CLOB},
+      </if>
+      <if test="category != null">
+        category = #{category.id,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null">
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+
+   <update id="countComments" parameterType="java.lang.Integer">
+    update cms_article set comments=(select count(id) from blog_comment where blog=#{id,jdbcType=INTEGER}) where id = #{id,jdbcType=INTEGER}
+    </update> -->
+    
+    <update id="updateDeleted" parameterType="java.lang.Integer">
+   		 update cms_article set deleted=1 where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="increaseHit" parameterType="java.lang.Integer">
+   	 update cms_article set hits=hits+1 where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="updateArticleStatus" parameterType="map">
+    update cms_article
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

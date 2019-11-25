@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <link href="/resource/css/bootstrap.min.css" type="text/css"
 	rel="stylesheet">
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resource/js/turnpage.js"></script>
 </head>
 <script type="text/javascript">
@@ -74,6 +72,7 @@
 				<th>所属栏目</th>
 				<th>所属分类</th>
 				<th>更新时间</th>
+				<th>文章状态</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -93,6 +92,7 @@
 				<td>${a.channel.name}</td>
 				<td><fmt:formatDate value="${a.updated }"
 						pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				<td>${a.status==0?'待审':a.status==1?'已审':'驳回'}</td>
 				<td><button type="button" class="btn btn-warning" onclick="detail(${a.id})">详情 </button> </td>
 			</tr>
 		</c:forEach>

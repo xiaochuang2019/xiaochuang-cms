@@ -7,18 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>管理员页面</title>
-
-	
 <link rel="stylesheet" type="text/css"
 	href="/resource/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/resource/css/cms.css" />
-<!-- 	<link rel="stylesheet" type="text/css"
-	href="/resource/open-iconic/font/css/open-iconic-bootstrap.css" /> -->
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-
-
-<script type="text/javascript"
-	src="/resource/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -75,7 +66,7 @@
 						aria-selected="false" onclick="articles()">文章管理</a> <a
 						class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
 						href="#v-pills-messages" role="tab"
-						aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+						aria-controls="v-pills-messages" onclick="selects()" aria-selected="false">链接管理</a>
 					<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
 						href="#v-pills-settings" role="tab"
 						aria-controls="v-pills-settings" aria-selected="false">Settings</a>
@@ -85,7 +76,12 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	<script type="text/javascript">
+	function selects() {
+		$("#center").load("/links/selects");
+	}
+	
 	function articles() {
 		$("#center").load("/article/articles");
 	}

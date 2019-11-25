@@ -15,6 +15,17 @@ import com.xiaochuang.cms.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	/**
+	 * 
+	 * @Title: users 
+	 * @Description: 管理员查询用户列表
+	 * @param user
+	 * @param model
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 * @return: String
+	 */
 	@RequestMapping("users")
 	public String users(User user,Model model,@RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "3")Integer pageSize) {
 		PageInfo<User> users = userService.users(user, page, pageSize);
@@ -25,6 +36,14 @@ public class UserController {
 		model.addAttribute("num",nums);
 		return "admin/user/users";
 	}
+	/**
+	 * 
+	 * @Title: update 
+	 * @Description: 禁用以及启动用户
+	 * @param user
+	 * @return
+	 * @return: String
+	 */
 	@RequestMapping("update")
 	@ResponseBody
 	public	String update(User user) {

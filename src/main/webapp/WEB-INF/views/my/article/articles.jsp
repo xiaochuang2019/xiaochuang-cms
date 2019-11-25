@@ -6,16 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title><!-- 
 <link href="/resource/css/bootstrap.min.css" type="text/css"
 	rel="stylesheet">
 <script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resource/js/turnpage.js"></script>
+<script type="text/javascript" src="/resource/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/resource/js/turnpage.js"></script> -->
+<link type="text/css" rel="stylesheet" href="/resource/css/jquery/screen.css">
 </head>
 <script type="text/javascript">
 	$(function() {
-	$("#status").val(${article.status});
+	$("#status").val('${article.status}');
 	})
 	function goPage(page) {
 	var url = "/my/articles?page=" + page + "&title="

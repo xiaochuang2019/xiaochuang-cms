@@ -53,6 +53,9 @@
 		<if test="categoryId!=null">
 		and category_Id=#{categoryId}
 		</if>
+		<if test="contentType!=null">
+		and content_type=#{contentType}
+		</if>
   	</where>
 		order by updated desc
   </select>

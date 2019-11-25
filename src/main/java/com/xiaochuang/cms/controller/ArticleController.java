@@ -17,6 +17,17 @@ import com.xiaochuang.cms.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	/**
+	 * 
+	 * @Title: articles 
+	 * @Description: 查询并前往管理员文章页面
+	 * @param article
+	 * @param model
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 * @return: String
+	 */
 	@RequestMapping("articles")
 	public String articles(Article article,Model model,@RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "3")Integer pageSize) {
 		PageInfo<Article> articles =	articleService.articles(article,page,pageSize);
@@ -27,12 +38,29 @@ public class ArticleController {
 		model.addAttribute("num",nums);
 		return "admin/article/articles";
 	}
+	/**
+	 * 
+	 * @Title: article 
+	 * @Description: 查询文章详情
+	 * @param article
+	 * @param model
+	 * @return
+	 * @return: String
+	 */
 	@RequestMapping("article")
 	public	String article(Article article,Model model) {
 		ArticleWithBLOBs bs=articleService.article(article);
 		model.addAttribute("article",bs);
 		return "admin/article/article";
 	}
+	/**
+	 * 
+	 * @Title: update 
+	 * @Description: 修改文章状态
+	 * @param article
+	 * @return
+	 * @return: String
+	 */
 	@RequestMapping("update")
 	@ResponseBody
 	public String update(ArticleWithBLOBs article) {

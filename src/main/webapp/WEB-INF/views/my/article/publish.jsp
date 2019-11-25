@@ -18,8 +18,6 @@
 <script charset="utf-8" src="/resource/kindeditor/kindeditor-all.js"></script>
     
 <script charset="utf-8" src="/resource/kindeditor/lang/zh-CN.js"></script>
-<script src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/jquery.validate.js"></script>
 
 <script>
 	KindEditor.ready(function(K) {

@@ -5,15 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/resource/css/bootstrap.min.css" type="text/css"
-	rel="stylesheet">
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resource/js/turnpage.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<div class="container" style="text-align: center;">
 	<dl>
 			<dt>
 			  <h2>${article.title }</h2>
@@ -27,7 +23,7 @@
 			<dd>${article.content }</dd>
 
 		</dl>
-		
+		</div>
 <script type="text/javascript">
 	 function back(){
 		 $("#center").load("/my/articles")

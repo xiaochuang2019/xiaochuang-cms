@@ -145,11 +145,11 @@
 				<div class="card" style="width: 18rem;">
 					<div class="card-header">最新文章</div>
 					<div class="card-body">
+					
 						<c:forEach items="${lastInfo.list}" var="a">
 							<p class="ex">
 								<a href="/index/article?id=${a.id }" target="_blank"
 									title="${a.title }">${a.title }</a>
-
 							</p>
 						</c:forEach>
 					</div>
@@ -165,15 +165,19 @@
 					<div class="card-header">图片集</div>
 					<div class="card-body"></div>
 				</div>
-				<!-- 友情链接 -->
-				<div class="card" style="width: 18rem;">
-					<div class="card-header">友情链接</div>
-					<div class="card-body"></div>
-				</div>
 			</div>
-			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 		</div>
-
+		<div class="container" style="text-align: center;">
+		<hr>
+			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link">友情链接:</a></li>
+				<c:forEach items="${linkInfo.list}" var="l">
+					<li class="nav-item"><a href="${l.url}" class="nav-link"
+						target="_blank">${l.text}</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 		<script type="text/javascript">
 		//分页
 		function goPage(page) {

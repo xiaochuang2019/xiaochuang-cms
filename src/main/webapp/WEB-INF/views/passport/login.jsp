@@ -52,7 +52,7 @@
 
 				</div>
 			</div>
-			<div class="col-md-6"  style="background-image: url('/camera/u=3433174048,3564079323&fm=175&app=25&f=JPEG.jpg');height: 300px">
+			<div class="col-md-6">
 				<div class="passport_r">
 					<h3>最新加入的用户：</h3>
 					<p align="center">

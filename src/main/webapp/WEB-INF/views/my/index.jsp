@@ -13,8 +13,6 @@
 	href="/resource/css/cms.css" />
 <link href="/resource/css/bootstrap.min.css" type="text/css"
 	rel="stylesheet">
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- 头 -->
