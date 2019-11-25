@@ -135,18 +135,16 @@ public class IndexController {
 				comment.setArticle(article);
 				List<Comment> comments = commentService.gets(comment);
 				model.addAttribute("comments", comments);
-		
+
+				ArticleWithBLOBs bs=articleService.article(article);
 				//检查当前点击人是否登录.如果登录则根据标题和登录人查询是否收藏该文章
 				HttpSession session = request.getSession(false);
 				if(null!=session) {
 			       //
 					User user = (User) session.getAttribute("user");
-					int i = collectService.selectByText(article.getTitle(), user);
+					int i = collectService.selectByText(bs.getTitle(), user);
 					model.addAttribute("isCollect", i);
 				}
-			
-				
-		ArticleWithBLOBs bs=articleService.article(article);
 		model.addAttribute("article",bs);
 		return "/index/article";
 	}

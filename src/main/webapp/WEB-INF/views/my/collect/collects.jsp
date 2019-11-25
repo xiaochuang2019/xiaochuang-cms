@@ -28,24 +28,18 @@
 </script>
 </head>
 <body class="container">
-	<h2>我的收藏夹</h2>
-	<hr>
-	<c:forEach items="${info.list}" var="c">
-		<dl>
 
-			<dt>
-				<h3>
-					<a href="${c.url}" target="_blank">${c.text }</a>
-				</h3>
-			</dt>
-			<dd>
-				<fmt:formatDate value="${c.created}" pattern="yyyy-MM-dd HH:mm:ss" />
-				&nbsp;
-				<button class="btn btn-info btn-sm" onclick="deleteCollect(${c.id})">删除</button>
-			</dd>
-			<hr>
-		</dl>
-	</c:forEach>
+	<ul class="list-group">
+		<li class="list-group-item list-group-item-action list-group-item-info" aria-disabled="true"><h3>我的收藏夹</h3></li>
+		<c:forEach items="${info.list}" var="c">
+		<li class="list-group-item" style="font-size: 17px;">
+		 <a href="${c.url}" target="_blank">${c.text }</a><br>
+		 <fmt:formatDate value="${c.created}" pattern="yyyy-MM-dd HH:mm:ss" />
+		 &nbsp;
+		 <button class="btn btn-info btn-sm" onclick="deleteCollect(${c.id})">删除</button>
+		 </li>
+		</c:forEach>
+	</ul>
 	<jsp:include page="/WEB-INF/views/common/pages.jsp"></jsp:include>
 </body>
 </html>
