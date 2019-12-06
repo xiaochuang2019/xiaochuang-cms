@@ -6,7 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>cms系统</title>
+<!-- Bootstrap -->
+<!-- 
+<link rel="stylesheet" type="text/css"
+	href="/resource/css/cms.css" />
+<link href="/resource/css/bootstrap.min.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/resource/js/bootstrap.bundle.min.js"></script> 
+-->
 </head>
 <style type="text/css">
 .ex {
@@ -15,6 +26,7 @@
 	text-overflow: ellipsis; /*超出用省略号 */
 }
 </style>
+
 <body>
 	<jsp:include page="/WEB-INF/views/common/top.jsp"></jsp:include>
 	<div class="container">
@@ -43,13 +55,13 @@
 				<c:if test="${article.channelId==null }">
 					<!-- 轮播图 -->
 					<div>
-						<div id="carouselExampleCaptions" class="carousel slide"
+						<div id="carouselxiaochuangpleCaptions" class="carousel slide"
 							data-ride="carousel">
 							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleCaptions" data-slide-to="0"
+								<li data-target="#carouselxiaochuangpleCaptions" data-slide-to="0"
 									class="active"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-								<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+								<li data-target="#carouselxiaochuangpleCaptions" data-slide-to="1"></li>
+								<li data-target="#carouselxiaochuangpleCaptions" data-slide-to="2"></li>
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
@@ -71,11 +83,11 @@
 									</div>
 								</div>
 							</div>
-							<a class="carousel-control-prev" href="#carouselExampleCaptions"
+							<a class="carousel-control-prev" href="#carouselxiaochuangpleCaptions"
 								role="button" data-slide="prev"> <span
 								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+							</a> <a class="carousel-control-next" href="#carouselxiaochuangpleCaptions"
 								role="button" data-slide="next"> <span
 								class="carousel-control-next-icon" aria-hidden="true"></span> <span
 								class="sr-only">Next</span>

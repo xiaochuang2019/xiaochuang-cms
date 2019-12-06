@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
-	<nav aria-label="Page navigation example">
+	<nav aria-label="Page navigation xiaochuangple">
 		<ul class="pagination">
 			<li class="page-item"><a class="page-link" href="javascript:goPage(${info.prePage==0?1:info.prePage })"
 				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>

@@ -37,11 +37,11 @@ End Function
 					var self = this;
 					K.ctrl(document, 13, function() {
 						self.sync();
-						K('form[name=example]')[0].submit();
+						K('form[name=xiaochuangple]')[0].submit();
 					});
 					K.ctrl(self.edit.doc, 13, function() {
 						self.sync();
-						K('form[name=example]')[0].submit();
+						K('form[name=xiaochuangple]')[0].submit();
 					});
 				}
 			});
@@ -51,7 +51,7 @@ End Function
 </head>
 <body>
 	<%=htmlData%>
-	<form name="example" method="post" action="demo.asp">
+	<form name="xiaochuangple" method="post" action="demo.asp">
 		<textarea name="content1" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea>
 		<br />
 		<input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)

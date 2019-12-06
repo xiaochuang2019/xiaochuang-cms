@@ -4,7 +4,7 @@
   
   <insert id="insert">
   
-  insert into cms_collect (text,url,created,user_id)values(#{text},#{url},#{created},${user.id})
+  insert into cms_favorite (text,url,user_id,created)values(#{text},#{url},${user.id},#{created})
   
   </insert>
   
@@ -22,18 +22,18 @@
   
   <select id="selects" resultMap="collectResultMap">
   
-  select * from cms_collect c  where user_id=#{id} order by created desc
+  select * from cms_favorite c  where user_id=#{id} order by created desc
   
   </select>
   
   <select id="selectByText" resultType="int">
-  select count(*) from cms_collect c where user_id=#{user.id} and text=#{text}
+  select count(*) from cms_favorite c where user_id=#{user.id} and text=#{text}
   
   </select>
   
   <delete id="deleteById" >
   
-  delete from cms_collect where id=#{id}
+  delete from cms_favorite where id=#{id}
   
   </delete>
   

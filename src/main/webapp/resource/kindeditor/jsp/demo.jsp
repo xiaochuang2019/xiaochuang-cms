@@ -27,11 +27,11 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 					var self = this;
 					K.ctrl(document, 13, function() {
 						self.sync();
-						document.forms['example'].submit();
+						document.forms['xiaochuangple'].submit();
 					});
 					K.ctrl(self.edit.doc, 13, function() {
 						self.sync();
-						document.forms['example'].submit();
+						document.forms['xiaochuangple'].submit();
 					});
 				}
 			});
@@ -45,7 +45,7 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 </head>
 <body>
 	<%=htmlData%>
-	<form name="example" method="post" action="demo.jsp">
+	<form name="xiaochuangple" method="post" action="demo.jsp">
 		<textarea name="content1" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea>
 		<br />
 		<input type="button" name="button" value="提交内容" onclick="query()"/> (提交快捷键: Ctrl + Enter)

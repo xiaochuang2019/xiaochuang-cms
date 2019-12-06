@@ -94,7 +94,7 @@ define('SERVICES_JSON_SUPPRESS_ERRORS', 32);
 /**
  * Converts to and from JSON format.
  *
- * Brief example of use:
+ * Brief xiaochuangple of use:
  *
  * <code>
  * // create a new instance of Services_JSON
